@@ -12,6 +12,8 @@ router.get("/getDescriptions", query.getDescriptions);
 
 //Admin login and sign Up
 router.post("/signup", signUp);
-router.post("/login", loginpage);
+router.post("/login", loginpage.loginpage);
+router.get("/me", loginpage.me);
+router.post("/logout", loginpage.logout);
 
 module.exports = router;
