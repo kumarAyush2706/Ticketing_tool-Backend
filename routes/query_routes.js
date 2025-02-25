@@ -9,6 +9,7 @@ router.post("/generateToken", query.generateToken);
 router.post("/verify", query.verify);
 router.get("/getQuery", query.getQuery);
 router.get("/getDescriptions", query.getDescriptions);
+router.put("/updateStatus/:id", query.updateStatus);
 
 //Admin login and sign Up
 router.post("/signup", signUp);

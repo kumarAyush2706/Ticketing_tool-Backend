@@ -4,12 +4,13 @@ const dbModal = require("../modal/dbmodal");
 exports.generateToken = async (req, res) => {
   console.log("object");
   try {
-    const { name, email, query, description } = req.body;
+    const { name, email,phone, query, description } = req.body;
     console.log(req.body);
     const token = Math.floor(100000 + Math.random() * 900000).toString();
     const data = await dbModal.create({
       name: name,
       email: email,
+      phone:phone,
       query: query,
       description: description,
       token: token,
@@ -84,3 +85,28 @@ exports.getDescriptions = async (req, res) => {
     });
   }
 };
+exports.updateStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const queryId = req.params.id;
+
+    // if (!["New", "Open", "In Progress", "Closed"].includes(status)) {
+    //   return res.status(400).json({ success: false, message: "Invalid status" });
+    // }
+
+    const updatedQuery = await dbModal.findByIdAndUpdate(
+      queryId,
+      { status },
+      { new: true }
+    );
+
+    if (!updatedQuery) {
+      return res.status(404).json({ success: false, message: "Query not found" });
+    }
+
+    res.json({ success: true, message: "Status updated successfully", data: updatedQuery });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  } 
+}
