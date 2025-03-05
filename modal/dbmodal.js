@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
   },
   phone:{
     type:String,
-    required:true
+    // required:true
   },
   query: {
     type: String,
@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["New", "Open", "In Progress", "Closed"],
+    enum: ["New", "Open", "Progress", "Closed"],
     default: "New",
   },
   priority: {
@@ -44,7 +44,6 @@ const userSchema = new mongoose.Schema({
   replies: [replySchema], // Storing all replies here
   messageId: String, // Stores the first email's message ID
   createdAt: { type: Date, default: Date.now },
-
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   createdAt: { type: Date, default: Date.now },

@@ -91,7 +91,7 @@ exports.addReply = async (req, res) => {
     const mailOptions = {
       from: "ayush.techisors.3@gmail.com",
       to: query.email, // User's email
-      subject: `Re: Your Query - ${query.description}`, // Re: makes it look like a reply
+      subject: `Re: Your Query - ${query.query}`, // Re: makes it look like a reply
       html: `
         <p><strong>${adminName}</strong> has replied to your query:</p>
         <blockquote>${message}</blockquote>

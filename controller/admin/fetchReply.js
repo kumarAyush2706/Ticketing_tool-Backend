@@ -62,9 +62,9 @@ exports.userReplyFetch = async (req, res) => {
 
         const parsedEmail = await simpleParser(all.body);
         const senderEmail = parsedEmail.from.value[0].address;
-        const senderName = parsedEmail.from.value[0]?.name || "Unknown User";
+        const senderName = parsedEmail.from.value[0]?.name || "Unknown User" ;
 
-        const userReply = extractUserReply(parsedEmail.text);
+        const userReply = extractUserReply(parsedEmail.text) ;
 
         const emailData = {
           fromEmail: senderEmail,
@@ -127,8 +127,8 @@ exports.userReplyFetch = async (req, res) => {
     return res.status(200).json({ success: true, emails: storedEmails });
   } catch (error) {
     console.error("Error fetching emails:", error);
-    return res
-      .status(500)
+    
+    return res.status(500)
       .json({ success: false, message: "Error fetching emails", error });
   }
 };
